@@ -1,1 +1,1 @@
-<h1>Welcome to elektricmaster7's Ludum Dare 29 Source Code</h1>
+<h2>Welcome to elektricmaster7's Ludum Dare 29 Source Code</h2>
