@@ -81,8 +81,6 @@ public class Game implements Runnable{
 		mx = Mouse.getX();
 		my = Mouse.getY();
 		
-		
-		
 		if (Keyboard.keyPressed(KeyEvent.VK_UP)) position_y--;
 		if (Keyboard.keyPressed(KeyEvent.VK_DOWN)) position_y++;
 		if (Keyboard.keyPressed(KeyEvent.VK_LEFT)) position_x--;
