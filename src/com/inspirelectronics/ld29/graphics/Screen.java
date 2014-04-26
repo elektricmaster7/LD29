@@ -20,6 +20,17 @@ public class Screen {
 		image_pixels = ((DataBufferInt) image.getRaster().getDataBuffer()).getData();
 	}
 	
+	public void render(Bitmap bitmap, int x, int y){
+		for (int yy = 0; yy < bitmap.getHeight(); yy++) {
+			int yp = yy + y;
+			for (int xx = 0; xx < bitmap.getWidth(); xx++) {
+				int xp = xx + x;
+				if (xp < 0 || xp >= width || yp < 0 || yp >= height) continue;
+				buffer[xp + yp * width] = bitmap.pixels[xx + yy * bitmap.getWidth()];
+			}
+		}
+	}
+	
 	public void flip(){
 		for(int i = 0; i < width * height; i++){
 			image_pixels[i] = buffer[i];

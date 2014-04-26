@@ -4,6 +4,9 @@ import java.awt.Graphics;
 import java.awt.image.BufferStrategy;
 import java.awt.image.BufferedImage;
 
+import com.inspirelectronics.ld29.input.Keyboard;
+import com.inspirelectronics.ld29.input.Mouse;
+
 public class Display {
 	
 	private Window window;
@@ -32,8 +35,9 @@ public class Display {
 	}
 	
 	private void setupInput(){
-		//window.addKeyListener(new Keyboard());
-		//window.addMouseListener(new Mouse(scale));
+		window.addKeyListener(new Keyboard());
+		window.addMouseListener(new Mouse(scale));
+		window.addMouseMotionListener(new Mouse(scale));
 	}
 	
 	public Graphics getGraphics() throws Exception{
