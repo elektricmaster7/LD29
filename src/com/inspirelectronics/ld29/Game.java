@@ -1,9 +1,14 @@
 package com.inspirelectronics.ld29;
 
+import java.awt.event.KeyEvent;
+import java.awt.event.MouseEvent;
+
 import com.inspirelectronics.ld29.graphics.Color;
 import com.inspirelectronics.ld29.graphics.Display;
 import com.inspirelectronics.ld29.graphics.Screen;
 import com.inspirelectronics.ld29.graphics.Window;
+import com.inspirelectronics.ld29.input.Keyboard;
+import com.inspirelectronics.ld29.input.Mouse;
 
 public class Game implements Runnable{
 	
@@ -20,6 +25,11 @@ public class Game implements Runnable{
 	public int framerate = 60;
 	public Screen screen;
 	private Display display;
+	
+	public int position_x = 0;
+	public int position_y = 0;
+	
+	public int mx, my;
 	
 	public void init(){
 		//Setup Window
@@ -58,12 +68,25 @@ public class Game implements Runnable{
 	public void render(){
 		screen.clear();
 		
-		screen.fillRect(0, 1, 10, 10, Color.GREEN);
+		screen.fillRect(position_x, position_y, 10, 10, Color.GREEN);
+		
+		if(Mouse.buttonDown(Mouse.LEFT_BUTTON)){
+			screen.fillRect(mx, my, 10, 10, Color.GREEN);
+		}
 		
 		show();
 	}
 	
 	public void update(){
+		mx = Mouse.getX();
+		my = Mouse.getY();
+		
+		
+		
+		if (Keyboard.keyPressed(KeyEvent.VK_UP)) position_y--;
+		if (Keyboard.keyPressed(KeyEvent.VK_DOWN)) position_y++;
+		if (Keyboard.keyPressed(KeyEvent.VK_LEFT)) position_x--;
+		if (Keyboard.keyPressed(KeyEvent.VK_RIGHT)) position_x++;
 		
 	}
 	
