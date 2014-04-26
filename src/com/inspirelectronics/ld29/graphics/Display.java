@@ -24,10 +24,16 @@ public class Display {
 		window.createBufferStrategy(3);
 		bs = window.getBufferStrategy();
 		g = bs.getDrawGraphics();
+		setupInput();
 	}
 	
 	public void setScale(float scale){
 		this.scale = scale;
+	}
+	
+	private void setupInput(){
+		//window.addKeyListener(new Keyboard());
+		//window.addMouseListener(new Mouse(scale));
 	}
 	
 	public Graphics getGraphics() throws Exception{
