@@ -13,8 +13,8 @@ public class SpriteSheet {
 	
 	public Sprite getSprite(int sx, int sy){
 		Bitmap buffer = new Bitmap(sw, sh); 
-		int y = bitmap.getHeight();
-		int x = bitmap.getWidth();
+		int x = sx * sw;
+		int y = sy * sh;
 		for (int yy = 0; yy < sh; yy++) {
 			int yp = yy + y;
 			for(int xx = 0; xx < sw; xx++){

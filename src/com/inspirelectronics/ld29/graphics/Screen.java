@@ -31,6 +31,18 @@ public class Screen {
 		}
 	}
 	
+	public void render(Sprite sprite, int x, int y){
+		for (int yy = 0; yy < sprite.bitmap.getHeight(); yy++) {
+			int yp = yy + y;
+			for (int xx = 0; xx < sprite.bitmap.getWidth(); xx++) {
+				int xp = xx + x;
+				if (xp < 0 || xp >= width || yp < 0 || yp >= height) continue;
+				int c = sprite.bitmap.pixels[xx + yy * sprite.bitmap.getWidth()];
+				if (c < 0) buffer[xp + yp * width] = c;
+			}
+		}
+	}
+	
 	public void flip(){
 		for(int i = 0; i < width * height; i++){
 			image_pixels[i] = buffer[i];

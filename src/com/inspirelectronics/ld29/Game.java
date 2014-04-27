@@ -1,14 +1,16 @@
 package com.inspirelectronics.ld29;
 
 import java.awt.event.KeyEvent;
-import java.awt.event.MouseEvent;
 
+import com.inspirelectronics.ld29.entities.Player;
+import com.inspirelectronics.ld29.graphics.Art;
 import com.inspirelectronics.ld29.graphics.Color;
 import com.inspirelectronics.ld29.graphics.Display;
 import com.inspirelectronics.ld29.graphics.Screen;
 import com.inspirelectronics.ld29.graphics.Window;
 import com.inspirelectronics.ld29.input.Keyboard;
 import com.inspirelectronics.ld29.input.Mouse;
+import com.inspirelectronics.ld29.level.Level;
 
 public class Game implements Runnable{
 	
@@ -31,10 +33,19 @@ public class Game implements Runnable{
 	
 	public int mx, my;
 	
+	public Level level;
+	public Player player;
+	
 	public void init(){
 		//Setup Window
 		display = new Display(new Window(TITLE, WIDTH, HEIGHT), SCALE);
 		screen = new Screen(WIDTH, HEIGHT, SCALE);
+		
+		Art.getInstance();
+		
+		level = new Level(16, 10);
+		player = new Player(8, 8);
+		level.add(player);
 	}
 	
 	public void run() {
@@ -68,7 +79,10 @@ public class Game implements Runnable{
 	public void render(){
 		screen.clear();
 		
-		screen.fillRect(position_x, position_y, 10, 10, Color.GREEN);
+		//level.setOffset(-position_x, -position_y);
+		level.render(screen);
+		
+		//screen.fillRect(position_x, position_y, 8, 8, Color.GREEN);
 		
 		if(Mouse.buttonDown(Mouse.LEFT_BUTTON)){
 			screen.fillRect(mx, my, 10, 10, Color.GREEN);
@@ -81,10 +95,7 @@ public class Game implements Runnable{
 		mx = Mouse.getX();
 		my = Mouse.getY();
 		
-		if (Keyboard.keyPressed(KeyEvent.VK_UP)) position_y--;
-		if (Keyboard.keyPressed(KeyEvent.VK_DOWN)) position_y++;
-		if (Keyboard.keyPressed(KeyEvent.VK_LEFT)) position_x--;
-		if (Keyboard.keyPressed(KeyEvent.VK_RIGHT)) position_x++;
+		level.update();
 		
 	}
 	

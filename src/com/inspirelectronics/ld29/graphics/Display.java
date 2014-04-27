@@ -38,6 +38,7 @@ public class Display {
 		window.addKeyListener(new Keyboard());
 		window.addMouseListener(new Mouse(scale));
 		window.addMouseMotionListener(new Mouse(scale));
+		window.requestFocus();
 	}
 	
 	public Graphics getGraphics() throws Exception{

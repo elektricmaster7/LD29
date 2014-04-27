@@ -17,4 +17,11 @@ public class Sprite {
 		screen.render(bitmap, x+offsetX, y+offsetY);
 	}
 	
+	public int getWidth(){
+		return bitmap.getWidth();
+	}
+	
+	public int getHeight(){
+		return bitmap.getHeight();
+	}
 }
